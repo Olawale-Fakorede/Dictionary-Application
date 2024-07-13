@@ -2,6 +2,7 @@
 import React, { useContext, useState } from 'react'
 import myImg from './imgs/icon-arrow.svg'
 import { InputContext } from '../App';
+import axios from 'axios';
 
 
 const Header = () => {
