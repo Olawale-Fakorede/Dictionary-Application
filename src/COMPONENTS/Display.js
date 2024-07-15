@@ -1,22 +1,29 @@
 
 import React, { useState } from 'react'
+import axios from 'axios';
 
 
-// axios.default.baseUrl = "'https://ap";
+axios.defaults.baseURL = "https://api.dictionaryapi.dev/api/v2/entries/en";
+// Axios.get("https://api.dictionaryapi.dev/api/v2/entries/en")
+//         .then((response) => {console.log(response);});
 
 const Display = () => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(" ");
-    // const [loading, setLoading] = useState(flase);
+    const [loading, setLoading] = useState(false);
 
-    // const fetchData = async () => {
-    //     try {
-    //         setLoading(true);
-    //         const res = await axios('/${param}')
-    //     } catch (error) {
-            
-    //     }
-    // }
+    const fetchData = async () => {
+        try {
+            setLoading(true);
+            const res = await axios(`/${param}`)
+            setResponse(res.data);
+            setError(null);
+        } catch (err) {
+            setError(err);
+        } finally{
+          setLoading(false);
+        }
+    }
 
   return (
     <div className='container mx-auto p-4 max-w2xl bg-yellow-100 rounded-2xl justify-center'>
