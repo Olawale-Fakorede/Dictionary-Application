@@ -61,14 +61,14 @@ const Display = () => {
             <div>
               <h3 className='text-2xl font-bold mt-4'>Meaning & Definitions : </h3>
               <Definitions mean={response} />
+              <h3 className='text-2xl font-bold mt-4'>Phonetics : </h3>
+              <Phonetics mean={response} />
               <h3 className='text-2xl font-bold mt-4'>Example : </h3>
               <Examples mean={response} />
               <h3 className='text-2xl font-bold mt-4'>Synonyms : </h3>
               <Synonyms mean={response} />
               <h3 className='text-2xl font-bold mt-4'>Antonyms : </h3>
               <Antonym mean={response} />
-              <h3 className='text-2xl font-bold mt-4'>Phonetics : </h3>
-              <Phonetics mean={response} />
             </div>
           )
         }
