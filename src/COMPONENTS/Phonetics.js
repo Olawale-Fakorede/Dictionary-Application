@@ -8,6 +8,10 @@ const Phonetics = ({ mean }) => {
             <div>
                 <p>{words.phonetics}</p>
                 <p>{words.text}</p>
+                <span>
+                    <audio src={words.audio} alt='audio' controls />
+                    Listen to the audio
+                </span>
             </div>
         ))))}
     </div>
