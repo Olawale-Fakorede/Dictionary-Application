@@ -35,7 +35,7 @@ const Header = () => {
                 <input
                   type="text"
                   placeholder="Search here.."
-                  className=' rounded rounded-r-none w-96 h-9 outline-white py-2 pl-2 ml-0 text-xs font-san font-bold md:w-80'
+                  className='relative m-0 -mr-0.5 block min-w-0 flex-auto rounded rounded-r-nones w-40 md:w-72 lg:w-96 h-9 outline-white py-2 pl-2 ml-0 text-xs font-san font-bold md:w-80'
                   onChange={handleInputChange}
                   value={value}
                   onKeyDown={HandleInputKeyDown}

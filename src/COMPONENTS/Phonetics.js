@@ -10,7 +10,7 @@ const Phonetics = ({ mean }) => {
                 <p>{words.text}</p>
                 <span>
                     <audio src={words.audio} alt='audio' controls />
-                    Listen to the audio
+                    Click to listen to the audio
                 </span>
             </div>
         ))))}
