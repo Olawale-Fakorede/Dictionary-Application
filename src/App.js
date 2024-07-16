@@ -9,7 +9,7 @@ export const InputContext = createContext();
 
 function App() {
   const [inputValue, setInputValue] = useState(" ");
-  console.log(inputValue);
+  
 
   const value = {
     inputValue, setInputValue

@@ -1,6 +1,8 @@
 
-import React, { useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import axios from 'axios';
+import { InputContext } from '../App';
+import Definitions from './Definitions';
 
 
 axios.defaults.baseURL = "https://api.dictionaryapi.dev/api/v2/entries/en";
@@ -8,11 +10,12 @@ axios.defaults.baseURL = "https://api.dictionaryapi.dev/api/v2/entries/en";
 //         .then((response) => {console.log(response);});
 
 const Display = () => {
+    const { inputValue } = useContext(InputContext);
     const [response, setResponse] = useState(null);
-    const [error, setError] = useState(" ");
+    const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const fetchData = async () => {
+    const fetchData = async (param) => {
         try {
             setLoading(true);
             const res = await axios(`/${param}`)
@@ -25,12 +28,35 @@ const Display = () => {
         }
     }
 
+    useEffect(() => {
+      if (inputValue.length) {
+        fetchData(inputValue);
+      }
+    }, [inputValue]);
+    
+    if (loading) {
+      return  <h1>Loading...</h1>
+    }
+
+    if (error) {
+      return <h3 className='text-center mt-10 font-semibold text-gray-500'>
+                No Definitions for Word
+              </h3>
+    }
+
   return (
     <div className='container mx-auto p-4 max-w2xl bg-yellow-100 rounded-2xl justify-center'>
-        <h3 className='text-2xl font-bold mt-4'>Meaning & Definitions : </h3>
-        <h3 className='text-2xl font-bold mt-4'>Example : </h3>
-        <h3 className='text-2xl font-bold mt-4'>Synonyms : </h3>
-        <h3 className='text-2xl font-bold mt-4'>Antonyms : </h3>
+        {
+          response && (
+            <div>
+              <h3 className='text-2xl font-bold mt-4'>Meaning & Definitions : </h3>
+              <Definitions />
+              <h3 className='text-2xl font-bold mt-4'>Example : </h3>
+              <h3 className='text-2xl font-bold mt-4'>Synonyms : </h3>
+              <h3 className='text-2xl font-bold mt-4'>Antonyms : </h3>
+            </div>
+          )
+        }
     </div>
   )
 }
