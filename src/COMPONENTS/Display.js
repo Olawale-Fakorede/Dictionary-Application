@@ -3,6 +3,10 @@ import React, { useContext, useState, useEffect } from 'react'
 import axios from 'axios';
 import { InputContext } from '../App';
 import Definitions from './Definitions';
+import Examples from './Examples';
+import Synonyms from './Synonyms';
+import Antonym from './Antonym';
+import Phonetics from './Phonetics';
 
 
 axios.defaults.baseURL = "https://api.dictionaryapi.dev/api/v2/entries/en";
@@ -35,7 +39,13 @@ const Display = () => {
     }, [inputValue]);
     
     if (loading) {
-      return  <h1>Loading...</h1>
+      return (
+        <div className='flex flex-col space-y-3 animate-pulse p-4 container mx-auto max-w-2xl justify-center items-center h-screen'>
+          <div className='spinner-border text-primary' role='status'>
+            <span className='sr-only'>Loading...</span>
+          </div>
+        </div>
+      )
     }
 
     if (error) {
@@ -50,10 +60,15 @@ const Display = () => {
           response && (
             <div>
               <h3 className='text-2xl font-bold mt-4'>Meaning & Definitions : </h3>
-              <Definitions />
+              <Definitions mean={response} />
               <h3 className='text-2xl font-bold mt-4'>Example : </h3>
+              <Examples mean={response} />
               <h3 className='text-2xl font-bold mt-4'>Synonyms : </h3>
+              <Synonyms mean={response} />
               <h3 className='text-2xl font-bold mt-4'>Antonyms : </h3>
+              <Antonym mean={response} />
+              <h3 className='text-2xl font-bold mt-4'>Phonetics : </h3>
+              <Phonetics mean={response} />
             </div>
           )
         }

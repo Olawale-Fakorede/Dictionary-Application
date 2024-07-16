@@ -1,18 +1,16 @@
 
 import React from 'react'
 
-const Definitions = ({ mean }) => {
-    console.log(mean);
+const Examples = ({ mean }) => {
   return (
     <div>
         {mean.map((data => data.meanings.map(words => words.definitions.map(def => (
             <div>
-                <li>{def.definition}</li>
-                <hr />
+                <p>{def.example}</p>
             </div>
         )))))}
     </div>
   )
 }
 
-export default Definitions
+export default Examples
